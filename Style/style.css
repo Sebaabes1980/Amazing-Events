@@ -85,6 +85,23 @@ footer>h1{
     margin: 2% 3%;
 }
 
+main{
+    display: flex;
+    flex-direction: column;
+}
+
+.container1{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.container1 fieldset{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 5%;
+}
+
 @media (min-width: 2000px) {
     h2{
         font-size: 10em;
@@ -94,6 +111,14 @@ footer>h1{
     }
     #contenedor-check{
         font-size: 1.8em;
+    }
+    #nombre, #mail, #mensaje, #enviar{
+        font-size: 2em;
+        margin-bottom: 5%;
+    }    
+    fieldset label{
+        font-size: 2em;
+        margin-bottom: 5%;
     }
 }
 
@@ -107,6 +132,14 @@ footer>h1{
     #contenedor-check{
         font-size: 1.5em;
     }
+    #nombre, #mail, #mensaje, #enviar{
+        font-size: 2em;
+        margin-bottom: 5%;
+    }    
+    fieldset label{
+        font-size: 2em;
+        margin-bottom: 5%;
+    }
 }
 
 @media (min-width: 1200px) and (max-width: 1600px) {
@@ -118,6 +151,14 @@ footer>h1{
     }
     #contenedor-check{
         font-size: 1.1em;
+    }
+    #nombre, #mail, #mensaje, #enviar{
+        font-size: 2em;
+        margin-bottom: 5%;
+    }    
+    fieldset label{
+        font-size: 2em;
+        margin-bottom: 5%;
     }
 }
 
@@ -131,6 +172,14 @@ footer>h1{
     #contenedor-check{
         font-size: 0.8em;
     }  
+    #nombre, #mail, #mensaje, #enviar{
+        font-size: 2em;
+        margin-bottom: 5%;
+    }    
+    fieldset label{
+        font-size: 2em;
+        margin-bottom: 5%;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
@@ -146,6 +195,14 @@ footer>h1{
     #contenedor{
        justify-items: center;
     }    
+    #nombre, #mail, #mensaje, #enviar{
+        font-size: 2em;
+        margin-bottom: 5%;
+    }    
+    fieldset label{
+        font-size: 2em;
+        margin-bottom: 5%;
+    }
  }
 
 @media (min-width: 375px) and (max-width: 768px){
@@ -172,6 +229,14 @@ footer>h1{
     footer>h1{
         font-size: 2em;
         align-self: center;
+    }
+    #nombre, #mail, #mensaje, #enviar{
+        font-size: 1.5em;
+        margin-bottom: 5%;
+    }    
+    fieldset label{
+        font-size: 1,5em;
+        margin-bottom: 5%;
     }
 }
 
