@@ -1,0 +1,205 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+header{
+   display: flex;
+   position: relative;
+   align-items: center;
+   justify-content: start;
+}
+
+header img{
+    position: relative;
+    width: 28%; 
+    margin: 1% 3%;
+}
+  
+h2>a{
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.navbar .navbar-expand-lg .bg-body-tertiary{
+    display: flex;
+    justify-self: flex-end;
+}
+
+.nav-link{
+    color: rgb(223, 24, 90);
+    font-weight: bold;
+}
+
+.nav-item{
+    border-radius: 5px;
+    margin-left: 2px;
+    box-shadow: 5px 5px 5px gray;
+}
+
+#contenedor{
+    display: flex;
+    position: relative;
+}
+
+#contenedor-check{
+    display: flex;
+    margin: 3%;
+    gap: 1em;
+    width: 60%;
+}
+
+.form-check-input{
+    background-color: antiquewhite;
+}
+
+#contenedor-search{
+    width: 40%;
+    align-self: center ;
+}
+
+.form-control .me-2{
+    width: 10%;
+}
+
+#contenedor-cards{
+    display: flex;
+    margin: 2%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+footer{
+    display: flex;
+    background-image: url("/Assets/img/fondo_nav.png");
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#contenedor-redes{
+    margin: 1% 3%;
+}
+
+footer>h1{
+    margin: 2% 3%;
+}
+
+@media (min-width: 2000px) {
+    h2{
+        font-size: 10em;
+    }
+    .nav-link{
+        font-size: 3em;
+    }
+    #contenedor-check{
+        font-size: 1.8em;
+    }
+}
+
+@media (min-width: 1600px) and (max-width:2000px) {
+    h2{
+        font-size: 8em;
+    }
+    .nav-link{
+        font-size: 2.5em;
+    }
+    #contenedor-check{
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1600px) {
+    h2{
+        font-size: 4.5em;
+    }
+    .nav-link{
+        font-size: 1.5em;
+    }
+    #contenedor-check{
+        font-size: 1.1em;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    h2{
+        font-size: 4em;
+    }
+    .nav-link{
+        font-size: 1.5em;
+    }
+    #contenedor-check{
+        font-size: 0.8em;
+    }  
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    header{
+        justify-content: space-around;
+    }
+    h2{
+        font-size: 2em;
+    }    
+    #contenedor-check{
+        font-size: 0.7em;
+    }
+    #contenedor{
+       justify-items: center;
+    }    
+ }
+
+@media (min-width: 375px) and (max-width: 768px){
+    header{
+        justify-content: space-around;
+    }
+    h2{
+        display: none;
+    } 
+    .carousel-control-prev-icon, .carousel-control-next-icon, .carousel-indicators{
+        display: none;
+    }
+    #contenedor-check{
+        font-size: 1em;
+        display: inline;
+    }
+    #contenedor{
+        display: flex;
+        justify-items: center;
+    }
+    #contenedor-redes{
+        flex-wrap: wrap;
+    }
+    footer>h1{
+        font-size: 2em;
+        align-self: center;
+    }
+}
+
+@media (max-width: 375px){
+    header{
+        justify-content: space-around;
+    }
+    h2{
+        display: none;
+    } 
+    .carousel-control-prev-icon, .carousel-control-next-icon, .carousel-indicators{
+        display: none;
+    }
+    #contenedor-check{
+        font-size: 1em;
+        display: inline;
+        text-align: center;
+        align-self: center;
+    }
+    #contenedor{
+        display: flex;
+        justify-items: center;
+     }
+     #contenedor-redes{
+        flex-wrap: wrap;
+    }
+    footer>h1{
+        font-size: 2em;
+        align-self: center;
+    }
+}
