@@ -52,6 +52,7 @@ h2>a{
 
 .form-check-input{
     background-color: antiquewhite;
+    box-shadow: 4px 4px 4px deeppink;
 }
 
 #contenedor-search{
@@ -63,11 +64,32 @@ h2>a{
     width: 10%;
 }
 
+#boton-search{
+    background-color: deeppink;
+    color: aliceblue;
+    transition: background-color 500ms;
+    font-weight: bold;
+}
+
+#boton-search:hover{
+    background-color: aliceblue;
+    color:deeppink ;
+}
+
+#input-search{
+    box-shadow: 4px 4px 4px deeppink;
+}
+
 #contenedor-cards{
     display: flex;
     margin: 2%;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+
+.btn-primary{
+    background-color: deeppink;
+    font-weight: bold;
 }
 
 footer{
@@ -102,6 +124,23 @@ main{
     margin-bottom: 5%;
 }
 
+table{
+    width: 93%;
+    margin: 3%;
+    border-radius: 5%;
+    padding: 2% 0%;
+}
+
+td, tr{
+    border: 1px solid black;
+    padding: 2%;
+
+}
+
+th{
+    font-size: 2em;
+    background-color: rgb(165, 163, 163);
+}
 @media (min-width: 2000px) {
     h2{
         font-size: 10em;
@@ -267,4 +306,7 @@ main{
         font-size: 2em;
         align-self: center;
     }
+    th{
+        font-size: 1em;
+    ]
 }
