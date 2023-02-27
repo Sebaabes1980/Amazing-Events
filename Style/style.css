@@ -87,6 +87,16 @@ h2>a{
     flex-wrap: wrap;
 }
 
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid black;
+    width: 10rem;
+    height: 10rem;
+}
+
 .btn-primary{
     background-color: deeppink;
     font-weight: bold;

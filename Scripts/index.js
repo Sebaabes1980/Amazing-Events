@@ -1,6 +1,6 @@
 let container = document.getElementById("contenedor-cards")
 
-const data = {
+ const data = {
     currentDate: "2022-01-01",
     events: [
       {
@@ -172,7 +172,7 @@ const data = {
         price:250
       }
     ]
-  }
+   }
 
  const fragment = document.createDocumentFragment();
 
@@ -191,4 +191,4 @@ function imprimirCards(array, contenedor){
     }
     contenedor.appendChild(fragment)
 }
-imprimirCards(events, contenedor-cards)
+imprimirCards(data.events, container)
