@@ -82,8 +82,13 @@ h2>a{
 
 #contenedor-cards{
     display: flex;
+    width: 100%;
+    min-height: 50vh;
+    background-color:aliceblue;
+    gap: 1rem;
+    align-items: center;
     margin: 2%;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -91,10 +96,42 @@ h2>a{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1rem;
     border: 1px solid black;
-    width: 10rem;
+    width: 20rem;
+    height: 20rem;
+    margin: 0%;
+}
+h5{
+    margin: 0%;
+    padding: 0%;
+}
+
+.header-card{
+    margin: 0%;
+    padding: 0%;
+}
+
+.card-title{
+    border-radius: 5% solid black;
+    text-align: center;
+    background-color: deeppink; 
+}
+.card-body{
+    margin: 0%;
+    padding: 0%;
+}
+
+.card-text{
+    margin: 1% 3%;
+    padding: 0%;
+}
+
+.card > img{
+    object-fit: cover;
+    width: 100%;
     height: 10rem;
+    margin: 0%;
+    padding: 0%;
 }
 
 .btn-primary{
@@ -219,7 +256,7 @@ th{
         font-size: 1.5em;
     }
     #contenedor-check{
-        font-size: 0.8em;
+        font-size: 0.9em;
     }  
     #nombre, #mail, #mensaje, #enviar{
         font-size: 2em;
@@ -239,10 +276,18 @@ th{
         font-size: 2em;
     }    
     #contenedor-check{
-        font-size: 0.7em;
+        display: flex;
+        font-size: 1em;
+        width: 100%;     
+        justify-content: center;   
+    }
+    #contenedor-search{
+        width: 100%;
     }
     #contenedor{
        justify-items: center;
+       flex-wrap: wrap;
+       align-items: center;
     }    
     #nombre, #mail, #mensaje, #enviar{
         font-size: 2em;
@@ -266,18 +311,29 @@ th{
     }
     #contenedor-check{
         font-size: 1em;
-        display: inline;
+        width: 100%;     
+        justify-content: center; 
+        flex-wrap: wrap;
     }
     #contenedor{
-        display: flex;
+        flex-direction: column;
         justify-items: center;
+        flex-wrap: wrap;
+    }
+    #contenedor-search{
+        width: 100%;
     }
     #contenedor-redes{
         flex-wrap: wrap;
     }
+    footer{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
     footer>h1{
         font-size: 2em;
-        align-self: center;
+        text-align: center;
     }
     #nombre, #mail, #mensaje, #enviar{
         font-size: 1.5em;
@@ -301,22 +357,34 @@ th{
     }
     #contenedor-check{
         font-size: 1em;
-        display: inline;
-        text-align: center;
-        align-self: center;
+        width: 100%;     
+        justify-content: center; 
+        flex-wrap: wrap;
     }
     #contenedor{
-        display: flex;
+        flex-direction: column;
         justify-items: center;
+        flex-wrap: wrap;
      }
+     #contenedor-search{
+        width: 100%;
+    }
      #contenedor-redes{
+        flex-wrap: wrap;
+        align-self: center;
+        justify-content: center;
+    }
+    footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         flex-wrap: wrap;
     }
     footer>h1{
         font-size: 2em;
-        align-self: center;
+        text-align: center;
     }
     th{
         font-size: 1em;
-    ]
+    }
 }

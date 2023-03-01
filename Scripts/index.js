@@ -41,7 +41,8 @@ let container = document.getElementById("contenedor-cards")
       },
       {
         _id: 4,
-        age:"https://i.postimg.cc/c4C2zXm8/Parisian-Museum.jpg",
+        // age:"https://i.postimg.cc/c4C2zXm8/Parisian-Museum.jpg",
+        image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-lq5XaXuhqKCZFeIVSl9vGgwVS5E7Ge7R0JL83buWA&s",
         name:"Parisian Museum",
         date:"2022-11-02",
         description:"A unique tour in the city of lights, get to know one of the most iconic places.",
@@ -65,7 +66,7 @@ let container = document.getElementById("contenedor-cards")
       },
       {
         _id: 6,
-        image:"https://i.postimg.cc/RZ9fH4Pr/halloween.jpg",
+        image:"https://i.postimg.cc/RZ9fH4Pr/halloween.jpg",        
         name:"Halloween Night",
         date:"2022-02-12",
         description:"Come with your scariest costume and win incredible prizes.",
@@ -181,13 +182,15 @@ function imprimirCards(array, contenedor){
         let div = document.createElement('div');
         div.className = "card"
         div.innerHTML += `
-        <div class="header-card">
-            <p>${event.name}</p>
-            <p>${event.category}</p>
+        <h5 class="card-title">${event.category}</h5>
+        <img class="card-img-top"  src="${event.image}"/>
+        <div class="card-body">          
+          <p class="card-text">${event.description}</p>          
         </div>
-        <img src="${event.image}"/>
+        <a href="#" class="btn btn-primary">${event.name}</a>
                 ` 
         fragment.appendChild(div)
+        
     }
     contenedor.appendChild(fragment)
 }
