@@ -16,10 +16,8 @@ function imprimirCards(array, contenedor){
         </div>
         <a href="#" class="btn btn-primary">${event.name}</a>
                 ` 
-        fragment.appendChild(div)
-        
+        fragment.appendChild(div)        
     }     
-
     contenedor.appendChild(fragment)
 }
 
@@ -60,7 +58,7 @@ const filterSearch = (array, value) => {
             return filteredArray
 }
 const filterRadios = (array) => {
-    let checked = document.querySelector('form:checked');
+    let checked = document.querySelector('input[type="checkbox"]:checked');
       console.log(checked)
      let filteredArray = array.filter(element => element.category.toLowerCase().includes(checked.id.toLowerCase()))
      return filteredArray
