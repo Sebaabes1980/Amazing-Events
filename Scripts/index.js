@@ -1,7 +1,7 @@
 import data from "./data.js";
 let $container = document.getElementById("contenedor-cards");
 let $checks = document.getElementById("contenedor-check");
-const $search = document.querySelector('input[placeholder="Search"]');
+const $search = document.querySelector('input[placeholder="search"]');
 const fragment = document.createDocumentFragment();
 
 function imprimirCards(array, contenedor){
@@ -54,25 +54,30 @@ const createChecks = (array, container) => {
 createChecks(categories, $checks)
 
 const filterSearch = (array, value) => {
-        let filteredArray = array.filter(element=> element.category.toLowerCase().includes(value.toLowerCase()))
+        let filteredArray = array.filter(element=> element.name.toLowerCase().includes(value.toLowerCase()))
+      //  console.log(filteredArray)
             return filteredArray
+
 }
 const filterRadios = (array) => {
-    let checked = document.querySelector('input[type="checkbox"]:checked');
-      console.log(checked)
-     let filteredArray = array.filter(element => element.category.includes(checked.category))
+    let checked = document.querySelectorAll('input[type="checkbox"]:checked');
+     //console.log(checked)
+     let filteredArray = array.filter(element => element.name.toLowerCase().includes(checked.id))
+    //console.log(filteredArray)
      return filteredArray
 }
 
 const filterAndPrint =  (array) =>{
     let arrayFiltered = filterSearch(array, $search.value)
     arrayFiltered = filterRadios(arrayFiltered)
+    //console.log(arrayFiltered)
     return arrayFiltered
 }
 
  $search.addEventListener('keyup', (e) =>{
     let dataFilter = filterAndPrint(data.events)
-    createCards(dataFilter, $container)
+    console.log(e)
+    imprimirCards(dataFilter, $container)
 })
 
 $checks.addEventListener('change', ()=>{
