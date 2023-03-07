@@ -54,13 +54,13 @@ const createChecks = (array, container) => {
 createChecks(categories, $checks)
 
 const filterSearch = (array, value) => {
-        let filteredArray = array.filter(element=> element.name.toLowerCase().includes(value.toLowerCase()))
+        let filteredArray = array.filter(element=> element.category.toLowerCase().includes(value.toLowerCase()))
             return filteredArray
 }
 const filterRadios = (array) => {
     let checked = document.querySelector('input[type="checkbox"]:checked');
       console.log(checked)
-     let filteredArray = array.filter(element => element.category.toLowerCase().includes(checked.id.toLowerCase()))
+     let filteredArray = array.filter(element => element.category.includes(checked.category))
      return filteredArray
 }
 
@@ -77,5 +77,5 @@ const filterAndPrint =  (array) =>{
 
 $checks.addEventListener('change', ()=>{
     let dataFilter = filterAndPrint(data.events)
-    createCards(dataFilter, $container)
+    imprimirCards(dataFilter, $container)
 }) 
