@@ -1,7 +1,7 @@
 import data from "./data.js";
 let $container = document.getElementById("contenedor-cards");
 let $checks = document.getElementById("contenedor-check");
-const $search = document.querySelector('input[placeholder="search"]');
+const $search = document.querySelector('input[placeholder="Search"]');
 const fragment = document.createDocumentFragment();
 
 function imprimirCards(array, contenedor){
@@ -59,7 +59,7 @@ const filterSearch = (array, value) => {
             return filteredArray
 
 }
-const filterRadios = (array) => {
+const filterChecks = (array) => {
     let checked = document.querySelectorAll('input[type="checkbox"]:checked');
      //console.log(checked)
      let filteredArray = array.filter(element => element.name.toLowerCase().includes(checked.id))
@@ -69,7 +69,7 @@ const filterRadios = (array) => {
 
 const filterAndPrint =  (array) =>{
     let arrayFiltered = filterSearch(array, $search.value)
-    arrayFiltered = filterRadios(arrayFiltered)
+    arrayFiltered = filterChecks(arrayFiltered)
     //console.log(arrayFiltered)
     return arrayFiltered
 }
