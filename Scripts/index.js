@@ -5,6 +5,7 @@ const $search = document.querySelector('input[placeholder="Search"]');
 const fragment = document.createDocumentFragment();
 
 function imprimirCards(array, contenedor){
+    contenedor.innerHTML=""
     for(let event of array){
         let div = document.createElement('div');
         div.className = "card"
@@ -24,7 +25,7 @@ function imprimirCards(array, contenedor){
 imprimirCards(data.events, $container)
 
 const createCategories = (array) =>{
-  let categories = array.map(category=> category.category)
+  let categories = array.map(cat=> cat.category)
 
   categories = categories.reduce((acumulador, elemento)=>{
       if(!acumulador.includes(elemento)){
@@ -54,17 +55,17 @@ const createChecks = (array, container) => {
 createChecks(categories, $checks)
 
 const filterSearch = (array, value) => {
-        let filteredArray = array.filter(element=> element.name.toLowerCase().includes(value.toLowerCase()))
-      //  console.log(filteredArray)
-            return filteredArray
-
+    let filteredArray = array.filter(element=> element.name.toLowerCase().includes(value.toLowerCase().trim()))
+    return filteredArray
 }
+console.log(filteredArray)
 const filterChecks = (array) => {
     let checked = document.querySelectorAll('input[type="checkbox"]:checked');
-     //console.log(checked)
-     let filteredArray = array.filter(element => element.name.toLowerCase().includes(checked.id))
-    //console.log(filteredArray)
-     return filteredArray
+    let filteredArray = array.filter(element => element.category.toLowerCase().includes(checked))
+    if (filteredArray.length < 1) {
+        return array
+    }
+    return filteredArray
 }
 
 const filterAndPrint =  (array) =>{
