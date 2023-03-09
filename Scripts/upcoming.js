@@ -3,20 +3,23 @@ let $container = document.getElementById("contenedor-cards");
 let $checks = document.getElementById("contenedor-check");
 const $search = document.querySelector('input[placeholder="Search"]');
 const fragment = document.createDocumentFragment();
+let dateReference = data.currentDate
 function imprimirCards(array, contenedor){
     contenedor.innerHTML=""
     for(let event of array){
-        let div = document.createElement('div');
-        div.className = "card"
-        div.innerHTML += `
-        <h5 class="card-title">${event.category}</h5>
-        <img class="card-img-top"  src="${event.image}"/>
-        <div class="card-body">          
-          <p class="card-text">${event.description}</p>          
-        </div>
-        <a href="details.html?id=${event._id}" class="btn btn-primary">${event.name}</a>
-                ` 
-        fragment.appendChild(div)        
+        if (event.date > dateReference) {
+            let div = document.createElement('div');
+            div.className = "card"
+            div.innerHTML += `
+            <h5 class="card-title">${event.category}</h5>
+            <img class="card-img-top"  src="${event.image}"/>
+            <div class="card-body">          
+            <p class="card-text">${event.description}</p>          
+            </div>
+            <a href="details.html?id=${event._id}" class="btn btn-primary">${event.name}</a>
+                    ` 
+            fragment.appendChild(div) 
+        }       
     }     
     contenedor.appendChild(fragment)
 }
