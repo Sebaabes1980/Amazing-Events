@@ -45,6 +45,7 @@ h2>a{
 
 #contenedor-check{
     display: flex;
+    justify-content: center;
     margin: 3%;
     gap: 1em;
     width: 60%;
@@ -100,6 +101,16 @@ h2>a{
     border: 1px solid black;
     width: 20rem;
     height: 20rem;
+    margin: 0%;
+}
+
+.card-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid black;
+    width: 40rem;
+    height: 40rem;
     margin: 0%;
 }
 h5{

@@ -3,7 +3,6 @@ let $container = document.getElementById("contenedor-cards");
 let $checks = document.getElementById("contenedor-check");
 const $search = document.querySelector('input[placeholder="Search"]');
 const fragment = document.createDocumentFragment();
-
 function imprimirCards(array, contenedor){
     contenedor.innerHTML=""
     for(let event of array){
@@ -15,7 +14,7 @@ function imprimirCards(array, contenedor){
         <div class="card-body">          
           <p class="card-text">${event.description}</p>          
         </div>
-        <a href="#" class="btn btn-primary">${event.name}</a>
+        <a href="details.html" class="btn btn-primary">${event.name}</a>
                 ` 
         fragment.appendChild(div)        
     }     
@@ -43,7 +42,7 @@ const createChecks = (array, container) => {
         let div = document.createElement('div')
         div.className = `form-check ${category.toLowerCase()}`
         div.innerHTML = `
-        <input class="form-check-input" type="checkbox" value="" id="${category.toLowerCase()}">
+        <input class="form-check-input" type="checkbox" value="${category.toLowerCase()}" id="${category.toLowerCase()}">
         <label class="form-check-label" for="${category.toLowerCase()}">
           ${category}
         </label>
@@ -58,10 +57,13 @@ const filterSearch = (array, value) => {
     let filteredArray = array.filter(element=> element.name.toLowerCase().includes(value.toLowerCase().trim()))
     return filteredArray
 }
-console.log(filteredArray)
+
 const filterChecks = (array) => {
-    let checked = document.querySelectorAll('input[type="checkbox"]:checked');
-    let filteredArray = array.filter(element => element.category.toLowerCase().includes(checked))
+    let checked = document.querySelectorAll(`input[type="checkbox"]:checked`);
+    let checkMapeado = Array.from(checked).map(elemento=> elemento.value)
+    console.log(checkMapeado)
+    let filteredArray = array.filter(element => checkMapeado.includes(element.category.toLowerCase()))
+    console.log(filteredArray.length)
     if (filteredArray.length < 1) {
         return array
     }
@@ -69,15 +71,15 @@ const filterChecks = (array) => {
 }
 
 const filterAndPrint =  (array) =>{
-    let arrayFiltered = filterSearch(array, $search.value)
-    arrayFiltered = filterChecks(arrayFiltered)
-    //console.log(arrayFiltered)
+    // let arrayFiltered = filterSearch(array, $search.value)
+    // arrayFiltered = filterChecks(arrayFiltered)
+    let arrayFiltered = filterChecks(array)
+    arrayFiltered = filterSearch(arrayFiltered, $search.value)
     return arrayFiltered
 }
 
  $search.addEventListener('keyup', (e) =>{
     let dataFilter = filterAndPrint(data.events)
-    console.log(e)
     imprimirCards(dataFilter, $container)
 })
 
