@@ -18,6 +18,26 @@ export function imprimirCards(array, contenedor){
     contenedor.appendChild(fragment)
 }
 
+export function imprimirCardsUpcoming(array, contenedor){
+    contenedor.innerHTML=""
+    for(let event of array){
+        if (event.date < date) {
+            let div = document.createElement('div');
+            div.className = "card"
+            div.innerHTML += `
+            <h5 class="card-title">${event.category}</h5>
+            <img class="card-img-top"  src="${event.image}"/>
+            <div class="card-body">          
+            <p class="card-text">${event.description}</p>          
+            </div>
+            <a href="details.html?id=${event._id}" class="btn btn-primary">${event.name}</a>
+                    ` 
+            fragment.appendChild(div)   
+        }     
+    }     
+    contenedor.appendChild(fragment)
+}
+
 export const createCategories = (array) =>{
     let categories = array.map(cat=> cat.category)  
     categories = categories.reduce((acumulador, elemento)=>{

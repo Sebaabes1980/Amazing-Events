@@ -1,90 +1,66 @@
-import data from "./data.js";
+import { imprimirCardsUpcoming, createCategories, createChecks, filterSearch, filterChecks } from './helpers.js';
+
 let $container = document.getElementById("contenedor-cards");
 let $checks = document.getElementById("contenedor-check");
 const $search = document.querySelector('input[placeholder="Search"]');
-const fragment = document.createDocumentFragment();
-let dateReference = data.currentDate
-function imprimirCards(array, contenedor){
-    contenedor.innerHTML=""
-    for(let event of array){
-        if (event.date > dateReference) {
-            let div = document.createElement('div');
-            div.className = "card"
-            div.innerHTML += `
-            <h5 class="card-title">${event.category}</h5>
-            <img class="card-img-top"  src="${event.image}"/>
-            <div class="card-body">          
-            <p class="card-text">${event.description}</p>          
-            </div>
-            <a href="details.html?id=${event._id}" class="btn btn-primary">${event.name}</a>
-                    ` 
-            fragment.appendChild(div) 
-        }       
-    }     
-    contenedor.appendChild(fragment)
-}
+const $reset = document.getElementById('reset');
+const $spinner = document.getElementById('spinner');
+let event = [];
+let date = [];
+let categories = "";
 
-imprimirCards(data.events, $container)
+const showSpinner = () => {
+    $spinner.classList.add('spinner--active');
+};
 
-const createCategories = (array) =>{
-  let categories = array.map(cat=> cat.category)
+const hideSpinner = () => {
+    $spinner.classList.remove('spinner--active');
+};
 
-  categories = categories.reduce((acumulador, elemento)=>{
-      if(!acumulador.includes(elemento)){
-          acumulador.push(elemento);
-      }
-      return acumulador
-  }, [])
-  return categories 
-}
-
-let categories = createCategories(data.events)
-
-const createChecks = (array, container) => {
-    array.forEach( category=>{
-        let div = document.createElement('div')
-        div.className = `form-check ${category.toLowerCase()}`
-        div.innerHTML = `
-        <input class="form-check-input" type="checkbox" value="${category.toLowerCase()}" id="${category.toLowerCase()}">
-        <label class="form-check-label" for="${category.toLowerCase()}">
-          ${category}
-        </label>
-        `
-        container.appendChild(div)
-    })
-}
-
-createChecks(categories, $checks)
-
-const filterSearch = (array, value) => {
-    let filteredArray = array.filter(element=> element.name.toLowerCase().includes(value.toLowerCase().trim()))
-    return filteredArray
-}
-
-const filterChecks = (array) => {
-    let checked = document.querySelectorAll(`input[type="checkbox"]:checked`);
-    let checkMapeado = Array.from(checked).map(elemento=> elemento.value)
-    console.log(checkMapeado)
-    let filteredArray = array.filter(element => checkMapeado.includes(element.category.toLowerCase()))
-    console.log(filteredArray.length)
-    if (filteredArray.length < 1) {
-        return array
+async function getData() {
+    try {
+        const apiUrl = "scripts/amazing.json";
+        const response = await fetch(apiUrl);
+        const json = await response.json();
+        event = json.events;   
+        date = json.currentDate;
+        hideSpinner();
+        imprimirCardsUpcoming(event, $container);
+        categories = createCategories(event);
+        createChecks(categories, $checks);
+    } catch (error) {
+      console.log(error);
     }
-    return filteredArray
 }
 
-const filterAndPrint =  (array) =>{
-    let arrayFiltered = filterChecks(array)
-    arrayFiltered = filterSearch(arrayFiltered, $search.value)
-    return arrayFiltered
-}
+showSpinner()
 
-$search.addEventListener('keyup', (e) =>{
-    let dataFilter = filterAndPrint(data.events)
-    imprimirCards(dataFilter, $container)
-})
+getData();
 
-$checks.addEventListener('change', ()=>{
-    let dataFilter = filterAndPrint(data.events)
-    imprimirCards(dataFilter, $container)
-}) 
+const filterAndPrint = () => {
+    let dataFiltered = filterSearch(event, $search.value);
+    dataFiltered = filterChecks(dataFiltered);
+    if (dataFiltered.length === 0) {
+        const $noResults = document.getElementById('no-results');
+        $noResults.style.display = 'block';
+    } else {
+        const $noResults = document.getElementById('no-results');
+        $noResults.style.display = 'none';
+    }
+    imprimirCardsUpcoming(dataFiltered, $container);
+  };
+
+$checks.addEventListener('change', () => {
+    filterAndPrint();
+  });
+  
+$search.addEventListener('keyup', () => {
+    filterAndPrint();
+});
+  
+ $reset.addEventListener('click', () => {
+     document.querySelectorAll('input[type="checks"]:checked').forEach(check => {
+       check.checked = false;
+     });
+     filterAndPrint();
+ });

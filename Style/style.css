@@ -66,14 +66,16 @@ h2>a{
     width: 10%;
 }
 
-#boton-search{
+#reset{
     background-color: deeppink;
     color: aliceblue;
     transition: background-color 500ms;
     font-weight: bold;
+    box-shadow: 3px 3px 3px deeppink;
+    border-color: blue;
 }
 
-#boton-search:hover{
+#reset:hover{
     background-color: aliceblue;
     color:deeppink ;
 }
@@ -114,6 +116,10 @@ h2>a{
     height: auto;
     margin: 0%;
     overflow:hidden;
+}
+
+.card-text{
+    text-align: justify;
 }
 
 .card-details h4{
