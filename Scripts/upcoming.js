@@ -6,7 +6,6 @@ const $search = document.querySelector('input[placeholder="Search"]');
 const $reset = document.getElementById('reset');
 const $spinner = document.getElementById('spinner');
 let event = [];
-let date = [];
 let categories = "";
 
 const showSpinner = () => {
@@ -19,6 +18,7 @@ const hideSpinner = () => {
 
 async function getData() {
     try {
+        let date = ""
         const apiUrl = "scripts/amazing.json";
         const response = await fetch(apiUrl);
         const json = await response.json();
