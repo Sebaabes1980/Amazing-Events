@@ -24,6 +24,7 @@ async function getData() {
         const json = await response.json();
         event = json.events;   
         date = json.currentDate;
+        dateFiltered = Array.from(date).map(elemento=> elemento.value)
         hideSpinner();
         imprimirCardsUpcoming(event, $container);
         categories = createCategories(event);
