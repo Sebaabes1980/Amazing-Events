@@ -7,6 +7,7 @@ const $reset = document.getElementById('reset');
 const $spinner = document.getElementById('spinner');
 let event = [];
 let categories = "";
+let eventFiltered="";
 
 const showSpinner = () => {
     $spinner.classList.add('spinner--active');
@@ -18,14 +19,16 @@ const hideSpinner = () => {
 
 async function getData() {
     try {
-      const apiUrl = "scripts/amazing.json";
-      const response = await fetch(apiUrl);
-      const json = await response.json();
-      event = json.events;
-      hideSpinner();
-      imprimirCards(event, $container);
-      categories = createCategories(event);
-      createChecks(categories, $checks);
+        const apiUrl = "scripts/amazing.json";
+        const response = await fetch(apiUrl);
+        const json = await response.json();
+        event = json.events;   
+        let dateCurrent = json.currentDate;
+        let eventFiltered = event.filter(b => b.date > dateCurrent);
+        hideSpinner();
+        imprimirCards(eventFiltered, $container);
+        categories = createCategories(event);
+        createChecks(categories, $checks);
     } catch (error) {
       console.log(error);
     }
@@ -39,11 +42,11 @@ const filterAndPrint = () => {
     let dataFiltered = filterSearch(event, $search.value);
     dataFiltered = filterChecks(dataFiltered);
     if (dataFiltered.length === 0) {
-      const $noResults = document.getElementById('no-results');
-      $noResults.style.display = 'block';
+        const $noResults = document.getElementById('no-results');
+        $noResults.style.display = 'block';
     } else {
-      const $noResults = document.getElementById('no-results');
-      $noResults.style.display = 'none';
+        const $noResults = document.getElementById('no-results');
+        $noResults.style.display = 'none';
     }
     imprimirCards(dataFiltered, $container);
   };
