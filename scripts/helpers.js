@@ -1,4 +1,5 @@
 const fragment = document.createDocumentFragment();
+let date = []
 
 export function imprimirCards(array, contenedor){
     contenedor.innerHTML=""
