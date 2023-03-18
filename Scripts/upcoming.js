@@ -1,4 +1,4 @@
-import { imprimirCardsUpcoming, createCategories, createChecks, filterSearch, filterChecks } from './helpers.js';
+import { imprimirCards, createCategories, createChecks, filterSearch, filterChecks } from './helpers.js';
 
 let $container = document.getElementById("contenedor-cards");
 let $checks = document.getElementById("contenedor-check");
@@ -6,8 +6,8 @@ const $search = document.querySelector('input[placeholder="Search"]');
 const $reset = document.getElementById('reset');
 const $spinner = document.getElementById('spinner');
 let event = [];
-let date = [];
 let categories = "";
+let eventFiltered="";
 
 const showSpinner = () => {
     $spinner.classList.add('spinner--active');
@@ -23,9 +23,10 @@ async function getData() {
         const response = await fetch(apiUrl);
         const json = await response.json();
         event = json.events;   
-        date = json.currentDate;
+        let dateCurrent = json.currentDate;
+        let eventFiltered = event.filter(b => b.date > dateCurrent);
         hideSpinner();
-        imprimirCardsUpcoming(event, $container);
+        imprimirCards(eventFiltered, $container);
         categories = createCategories(event);
         createChecks(categories, $checks);
     } catch (error) {
@@ -47,7 +48,7 @@ const filterAndPrint = () => {
         const $noResults = document.getElementById('no-results');
         $noResults.style.display = 'none';
     }
-    imprimirCardsUpcoming(dataFiltered, $container);
+    imprimirCards(dataFiltered, $container);
   };
 
 $checks.addEventListener('change', () => {
