@@ -23,10 +23,8 @@ async function getData() {
         const response = await fetch(apiUrl);
         const json = await response.json();
         event = json.events;   
-        let dateCurrent = json.currentDate;
-        let eventFiltered = event.filter(b => b.date > dateCurrent);
         hideSpinner();
-        imprimirCards(eventFiltered, $container);
+        imprimirCards(event, $container);
         categories = createCategories(event);
         createChecks(categories, $checks);
     } catch (error) {

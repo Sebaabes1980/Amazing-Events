@@ -98,15 +98,24 @@
     <div id="contenedor-search">
       <form class="d-flex" role="search">
         <input class="form-control me-2" id="input-search" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" id="reset" type="submit">Reset</button>
       </form>
     </div>
   </div>
 
+  <h1 id="no-results" style="display: none;">No results found</h1>
+  <div id="spinner" class="spinner">
+    <div class="spinner__item"></div>
+    <div class="spinner__item"></div>
+    <div class="spinner__item"></div>
+    <div class="spinner__item"></div>
+  </div>
+      
   <main>
     <div id="contenedor-cards">
     </div>
   </main>
-
+  
   <footer>
     <div id="contenedor-redes">
       <a href="https://www.instagram.com/amazingevents"> <img class="imgFooter" src="/assets/img/instagram.png" alt="logo de instagram"> </a>

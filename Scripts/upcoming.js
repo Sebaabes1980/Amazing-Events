@@ -7,7 +7,6 @@ const $reset = document.getElementById('reset');
 const $spinner = document.getElementById('spinner');
 let event = [];
 let categories = "";
-let eventFiltered="";
 
 const showSpinner = () => {
     $spinner.classList.add('spinner--active');
@@ -24,9 +23,9 @@ async function getData() {
         const json = await response.json();
         event = json.events;   
         let dateCurrent = json.currentDate;
-        let eventFiltered = event.filter(b => b.date > dateCurrent);
+        event = event.filter(b => b.date > dateCurrent);
         hideSpinner();
-        imprimirCards(eventFiltered, $container);
+        imprimirCards(event, $container);
         categories = createCategories(event);
         createChecks(categories, $checks);
     } catch (error) {
