@@ -7,7 +7,6 @@ const $reset = document.getElementById('reset');
 const $spinner = document.getElementById('spinner');
 let event = [];
 let categories = "";
-let eventFiltered="";
 
 const showSpinner = () => {
     $spinner.classList.add('spinner--active');
@@ -37,8 +36,8 @@ showSpinner()
 getData();
 
 const filterAndPrint = () => {
-    let dataFiltered = filterSearch(event, $search.value);
-    dataFiltered = filterChecks(dataFiltered);
+    let dataFiltered = filterChecks(event);
+    dataFiltered = filterSearch(dataFiltered, $search.value);
     if (dataFiltered.length === 0) {
         const $noResults = document.getElementById('no-results');
         $noResults.style.display = 'block';

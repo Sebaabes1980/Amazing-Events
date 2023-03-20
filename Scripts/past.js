@@ -38,8 +38,8 @@ showSpinner()
 getData();
 
 const filterAndPrint = () => {
-    let dataFiltered = filterSearch(event, $search.value);
-    dataFiltered = filterChecks(dataFiltered);
+    let dataFiltered = filterChecks(event);
+    dataFiltered = filterSearch(dataFiltered, $search.value);
     if (dataFiltered.length === 0) {
         const $noResults = document.getElementById('no-results');
         $noResults.style.display = 'block';

@@ -1,15 +1,41 @@
-import data from './data.js'
-let detailContainer = document.getElementById("contenedor-cards")
-const datos = data.events
-const queryString = location.search
-const params = new URLSearchParams(queryString)
-const eventID = params.get('id')
-const ev = datos.find( dato => dato._id == eventID )
-let dateReference = data.currentDate
+const $spinner = document.getElementById('spinner');  
+let dateReference = "";
+let ev = [];
 
+
+const showSpinner = () => {
+    $spinner.classList.add('spinner--active');
+};
+
+const hideSpinner = () => {
+    $spinner.classList.remove('spinner--active');
+};
+
+async function getData() {
+    try {
+        let detailContainer = document.getElementById("contenedor-cards")
+        const apiUrl = "scripts/amazing.json";
+        const response = await fetch(apiUrl);
+        const json = await response.json();
+        const queryString = location.search;
+        const params = new URLSearchParams(queryString);
+        const eventID = params.get('id');
+        let event = json.events;   
+        dateReference = json.currentDate;
+        ev = event.find( dato => dato._id == eventID );
+        createDetails(ev, detailContainer)
+        hideSpinner();
+
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+showSpinner();
+console.log(ev);
+getData();
 
 function createDetails(event, container) {
-    container.innerHTML=""
     let aux = event.assistance
     if (event.date > dateReference) {
         aux = event.estimate
@@ -31,5 +57,3 @@ function createDetails(event, container) {
     `
     container.appendChild(div)
 }
-
-createDetails(ev, detailContainer)
