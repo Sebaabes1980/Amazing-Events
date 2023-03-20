@@ -50,7 +50,7 @@ export const filterSearch = (array, value) => {
 
 export const filterChecks = (array) => {
     let checked = document.querySelectorAll(`input[type="checkbox"]:checked`);
-    let checkMapeado = Array.from(checked).map(elemento=> elemento.value)
+    let checkMapeado = Array.from(checked).map(elemento => elemento.value)
     console.log(checkMapeado)
     let filteredArray = array.filter(element => checkMapeado.includes(element.category.toLowerCase()))
     console.log(filteredArray.length)

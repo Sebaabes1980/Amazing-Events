@@ -1,10 +1,12 @@
 import { createCategories } from './helpers.js';
 const $spinner = document.getElementById('spinner');
-let $table1 = document.getElementById("table1");
+let $tablets = document.getElementById("tablets");
+let dateReference = "";
 let bigger = [];
 let small = [];
 let capacity = [];
-let dateReference = "";
+let arrayCat = [];
+let rev = 0;
 
 const showSpinner = () => {
     $spinner.classList.add('spinner--active');
@@ -21,11 +23,11 @@ async function getData() {
         const json = await response.json();
         let event = json.events;
         dateReference = json.currentDate;
+        arrayCat = createCategories(event);
         hideSpinner();
-        imprimirTable1(event, $table1);
-        imprimirTable2(event, $table1);
-        imprimirTable3(event, $table1);
-        console.log(createCategories(event));
+        imprimirTable1(event, $tablets);
+        imprimirTable2(event, $tablets);
+        imprimirTable3(event, $tablets);
     } catch (error) {
       console.log(error);
     }
@@ -49,9 +51,9 @@ function imprimirTable1(event,container) {
     </thead>
     <tbody>
       <tr>  
-        <td>Events with the higest percentage of attendance</td>
-        <td>Events with the lowest percentage of attendance</td>
-        <td>Events with larger capacity</td>
+        <td><b><i>Events with the higest percentage of attendance</i></b></td>
+        <td><b><i>Events with the lowest percentage of attendance</i></b></td>
+        <td><b><i>Events with larger capacity</i></b></td>
       </tr>
       <tr>
         <td><b>${bigger.name}</b></td>
@@ -64,7 +66,9 @@ function imprimirTable1(event,container) {
 }
 
 function imprimirTable2(event,container) {
-    let i = event.length;
+    bigger =  find_big(event);
+    small = find_small(event);
+    capacity = find_larger(event);
     let tab = document.createElement('table')
     tab.className = "table"
     tab.innerHTML = `
@@ -75,17 +79,13 @@ function imprimirTable2(event,container) {
     </thead>
     <tbody>
         <tr>  
-            <td>Categories</td>
-            <td>Revenues</td>
-            <td>Percentage of attendance</td>
+            <td><b><i>Categories</td>
+            <td><b><i>Revenues</td>
+            <td><b><i>Percentage of attendance</td>
         </tr>
-        <tr>
-            <td><b>${i}</b></td>
-            <td><b>${small.name}</b></td>
-            <td><b>${capacity.name}</b></td>
-        </tr>
-    </tbody>
     `
+    console.log(createTable(event));
+    tab.innerHTML = `${createTable(event)}`
     container.appendChild(tab)
 }
 
@@ -103,14 +103,9 @@ function imprimirTable3(event,container) {
     </thead>
     <tbody>
         <tr>  
-            <td>Categories</td>
-            <td>Revenues</td>
-            <td>Percentage of attendance</td>
-        </tr>
-        <tr>
-            <td><b>${bigger.name}</b></td>
-            <td><b>${small.name}</b></td>
-            <td><b>${capacity.name}</b></td>
+            <td><b><i>Categories</td>
+            <td><b><i>Revenues</td>
+            <td><b><i>Percentage of attendance</td>
         </tr>
     </tbody>
     `
@@ -169,105 +164,36 @@ function find_larger(array) {
     return(larger);
 }
 
+function revenues(array) {
+    let ac = 0;
+    let aux = 0;
+    for (let a of array){
+        if (a.date > dateReference) {
+            aux = a.estimate;
+        } else {
+            aux = a.assistance;
+        }
+        rev = 0
+        ac = ac + (a.price * aux);
+    }
+    return(ac);
+}
 
+let createTable = function(event){
+	let fila = "";
+	for(let e of event){
+		fila += "<tr> <td>";
+		fila += "${event.category}";
+		fila += "</td>";
 
-// function genera_tabla() {
-//     // Obtener la referencia del elemento body
-//     var body = document.getElementsByTagName("body")[0];
-  
-//     // Crea un elemento <table> y un elemento <tbody>
-//     var tabla   = document.createElement("table");
-//     var tblBody = document.createElement("tbody");
-  
-//     // Crea las celdas
-//     for (var i = 0; i < 2; i++) {
-//       // Crea las hileras de la tabla
-//       var hilera = document.createElement("tr");
-  
-//       for (var j = 0; j < 2; j++) {
-//         // Crea un elemento <td> y un nodo de texto, haz que el nodo de
-//         // texto sea el contenido de <td>, ubica el elemento <td> al final
-//         // de la hilera de la tabla
-//         var celda = document.createElement("td");
-//         var textoCelda = document.createTextNode("celda en la hilera "+i+", columna "+j);
-//         celda.appendChild(textoCelda);
-//         hilera.appendChild(celda);
-//       }
-  
-//       // agrega la hilera al final de la tabla (al final del elemento tblbody)
-//       tblBody.appendChild(hilera);
-//     }
-  
-//     // posiciona el <tbody> debajo del elemento <table>
-//     tabla.appendChild(tblBody);
-//     // appends <table> into <body>
-//     body.appendChild(tabla);
-//     // modifica el atributo "border" de la tabla y lo fija a "2";
-//     tabla.setAttribute("border", "2");
+		fila += "<td>";
+		fila += "loco2";
+		fila += "</td>";
 
-// <table>
-//     <thead>
-//       <tr>
-//         <th colspan="3">Upcoming Events stadistics by category</th>
-//       </tr>   
-//     </thead>
-//     <tbody>
-//       <tr>  
-//         <td>Categories</td>
-//         <td>Revenues</td>
-//         <td>Percentage of attendance</td>
-//       </tr>
-//       <tr>
-//         <td></td>
-//         <td></td>
-//         <td></td>
-//       </tr>
-//       <tr>
-//         <td></td>
-//         <td></td>
-//         <td></td>
-//       </tr>
-//       <tr>
-//         <td></td>
-//         <td></td>
-//         <td></td>
-//       </tr>
-//     </tbody>
-//     <thead>
-//       <tr>
-//         <th colspan="3">Past Events stadistics by category</th>
-//       </tr>   
-//     </thead>
-//     <tbody>
-//       <tr>  
-//         <td>Categories</td>
-//         <td>Revenues</td>
-//         <td>Percentage of attendance</td>
-//       </tr>
-//       <tr>
-//         <td></td>
-//         <td></td>
-//         <td></td>
-//       </tr>
-//       <tr>
-//         <td></td>
-//         <td></td>
-//         <td></td>
-//       </tr>
-//       <tr>
-//         <td></td>
-//         <td></td>
-//         <td></td>
-//       </tr>
-//       <tr>
-//         <td></td>
-//         <td></td>
-//         <td></td>
-//       </tr>
-//       <tr>
-//         <td></td>
-//         <td></td>
-//         <td></td>
-//       </tr>
-//     </tbody>
-//   </table>
+		fila += "<td>";
+		fila += "loco3";
+		fila += "</td>";
+	}
+	fila += "</tbody>";
+    return(fila);
+}
