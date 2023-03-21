@@ -2,12 +2,12 @@ import { createCategories } from './helpers.js';
 const $spinner = document.getElementById('spinner');
 let $tablets = document.getElementById("tablets");
 let dateReference = "";
-let bigger = [];
-let small = [];
 let capacity = [];
 let arrayCat = [];
 let rev = [];
 let per = [];
+let porce = "";
+let pesos = "";
 
 const showSpinner = () => {
     $spinner.classList.add('spinner--active');
@@ -39,9 +39,15 @@ showSpinner()
 getData();
 
 function imprimirTable1(event,container) {
-    bigger =  find_big(event);
-    small = find_small(event);
-    capacity = find_larger(event);
+    let bigger =  find_big(event);
+    let mayAtt = bigger.map(may => may.name)
+    let mayAtt2 = mayAtt.join('<br>');
+    let small = find_small(event);
+    let maySma = small.map(sma => sma.name)
+    let maySma2 = maySma.join('<br>');
+    let capacity = find_larger(event);
+    let mayCap = capacity.map(cap => cap.name);
+    let mayCap2 = mayCap.join('<br>');
     let tab = document.createElement('table')
     tab.className = "table"
     tab.innerHTML = `
@@ -57,9 +63,9 @@ function imprimirTable1(event,container) {
         <td><b><i>Events with larger capacity</i></b></td>
       </tr>
       <tr>
-        <td><b>${bigger.name}</b></td>
-        <td><b>${small.name}</b></td>
-        <td><b>${capacity.name}</b></td>
+        <td>${mayAtt2}</td>
+        <td>${maySma2}</td>
+        <td>${mayCap2}</td>
       </tr>
     </tbody>
     `
@@ -70,6 +76,8 @@ function imprimirTable2(event,container) {
     event = event.filter(b => b.date > dateReference);
     rev = revenues(event);
     per = percentage(event);
+    porce = "porce";
+    pesos = "pesos";
     let tab = document.createElement('table')
     tab.className = "table"
     tab.innerHTML = `
@@ -90,15 +98,17 @@ function imprimirTable2(event,container) {
 }
 
 function imprimirTable3(event,container) {
-    bigger =  find_big(event);
-    small = find_small(event);
-    capacity = find_larger(event);
+    event = event.filter(b => b.date < dateReference);
+    rev = revenues(event);
+    per = percentage(event);
+    porce = "porce";
+    pesos = "pesos";
     let tab = document.createElement('table')
     tab.className = "table"
     tab.innerHTML = `
     <thead>
         <tr>
-        <th colspan="3">Past Events stadistics by category</th>
+        <th colspan="3">Upcoming Events stadistics by category</th>
         </tr>   
     </thead>
     <tbody>
@@ -108,8 +118,8 @@ function imprimirTable3(event,container) {
             <td><b><i>Percentage of attendance</td>
         </tr>
     </tbody>
-    `
-    container.appendChild(tab)
+    ${createTable(arrayCat)}`
+    container.appendChild(tab);
 }
 
 function find_big(array) {
@@ -125,8 +135,18 @@ function find_big(array) {
         }
         porc = aux * 100 / a.capacity;
         if (porc > max) {
-            max = porc;
-            arrayMax = a;         
+            max = porc;        
+        }
+    }
+    for (let a of array){
+        if (a.date > dateReference) {
+            aux = a.estimate;
+        } else {
+            aux = a.assistance;
+        }
+        porc = aux * 100 / a.capacity;
+        if (porc == max) {
+            arrayMax.push(a);       
         }
     }
     return(arrayMax);
@@ -145,8 +165,18 @@ function find_small(array) {
         }
         porc = aux * 100 / a.capacity;
         if (porc < min) {
-            min = porc;
-            arrayMin = a;         
+            min = porc;        
+        }
+    }
+    for (let a of array){
+        if (a.date > dateReference) {
+            aux = a.estimate;
+        } else {
+            aux = a.assistance;
+        }
+        porc = aux * 100 / a.capacity;
+        if (porc == min) {
+            arrayMin.push(a);       
         }
     }
     return(arrayMin);
@@ -157,8 +187,12 @@ function find_larger(array) {
     let larg = 0;
     for (let a of array){
         if (a.capacity > larg) {
-            larg = a.capacity;
-            larger = a;         
+            larg = a.capacity;        
+        }
+    }
+    for (let a of array){
+        if (a.capacity == larg) {
+            larger.push(a);    
         }
     }
     return(larger);
@@ -172,11 +206,11 @@ let createTable = function(event){
 		fila += arrayCat[j];
 		fila += "</td>";
 
-		fila += "<td>";
+		fila += "<td class = " + pesos + ">";
 		fila += rev[j];
 		fila += "</td>";
 
-		fila += "<td>";
+		fila += "<td class = " + porce + ">";
 		fila += per[j];
 		fila += "</td>";
         j++;
@@ -200,7 +234,6 @@ function revenues(event) {
                     aux = a.assistance;
                 }
                 ac = ac + (a.price * aux);
-                console.log(arrayCat[index]);
             }
         }
         revenues.push(ac);       
@@ -224,6 +257,7 @@ function percentage(event) {
                 perc = aux * 100 / a.capacity;
             }
         }
+        perc = perc.toFixed(2);
         percentage.push(perc);       
     }
         return(percentage);

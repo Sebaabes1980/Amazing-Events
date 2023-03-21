@@ -233,19 +233,30 @@ main{
     margin: 3%;
     border-radius: 5%;
     padding: 2% 0%;
+    table-layout: fixed;
+    text-align: center;
 }
 
 .table td, tr{
     border: 1px solid black;
     padding: 2%;
-
+    width: 100%;
 }
 
 .table th{
     font-size: 2em;
     background-color: rgb(165, 163, 163);
     text-align: center;
+    width: 100%;
 }
+
+.porce::after {
+    content: " %";
+  }
+
+.pesos::before {
+    content: "U$$ ";
+  }
 
 .spinner {
     display: flex;

@@ -32,7 +32,6 @@ async function getData() {
 }
 
 showSpinner();
-console.log(ev);
 getData();
 
 function createDetails(event, container) {
