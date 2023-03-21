@@ -6,7 +6,8 @@ let bigger = [];
 let small = [];
 let capacity = [];
 let arrayCat = [];
-let rev = 0;
+let rev = [];
+let per = [];
 
 const showSpinner = () => {
     $spinner.classList.add('spinner--active');
@@ -66,9 +67,9 @@ function imprimirTable1(event,container) {
 }
 
 function imprimirTable2(event,container) {
-    bigger =  find_big(event);
-    small = find_small(event);
-    capacity = find_larger(event);
+    event = event.filter(b => b.date > dateReference);
+    rev = revenues(event);
+    per = percentage(event);
     let tab = document.createElement('table')
     tab.className = "table"
     tab.innerHTML = `
@@ -83,10 +84,9 @@ function imprimirTable2(event,container) {
             <td><b><i>Revenues</td>
             <td><b><i>Percentage of attendance</td>
         </tr>
-    `
-    console.log(createTable(event));
-    tab.innerHTML = `${createTable(event)}`
-    container.appendChild(tab)
+    </tbody>
+    ${createTable(arrayCat)}`
+    container.appendChild(tab);
 }
 
 function imprimirTable3(event,container) {
@@ -164,36 +164,67 @@ function find_larger(array) {
     return(larger);
 }
 
-function revenues(array) {
-    let ac = 0;
-    let aux = 0;
-    for (let a of array){
-        if (a.date > dateReference) {
-            aux = a.estimate;
-        } else {
-            aux = a.assistance;
-        }
-        rev = 0
-        ac = ac + (a.price * aux);
-    }
-    return(ac);
-}
-
 let createTable = function(event){
 	let fila = "";
+    let j = 0;
 	for(let e of event){
 		fila += "<tr> <td>";
-		fila += "${event.category}";
+		fila += arrayCat[j];
 		fila += "</td>";
 
 		fila += "<td>";
-		fila += "loco2";
+		fila += rev[j];
 		fila += "</td>";
 
 		fila += "<td>";
-		fila += "loco3";
+		fila += per[j];
 		fila += "</td>";
+        j++;
 	}
 	fila += "</tbody>";
     return(fila);
+}
+
+function revenues(event) {
+    let aux = 0;
+    let revenues = [];
+    let i = arrayCat.length;
+    for (let index = 0; index < i; index++) {
+        let ac = 0;
+        let count = 0;
+        for (let a of event) {
+            if (arrayCat[index] == a.category) {
+                if (a.date > dateReference) {
+                    aux = a.estimate;
+                } else {
+                    aux = a.assistance;
+                }
+                ac = ac + (a.price * aux);
+                console.log(arrayCat[index]);
+            }
+        }
+        revenues.push(ac);       
+    }
+        return(revenues);
+}
+
+function percentage(event) {
+    let aux = 0;
+    let percentage = [];
+    let i = arrayCat.length;
+    for (let index = 0; index < i; index++) {
+        let perc = 0;
+        for (let a of event) {
+            if (arrayCat[index] == a.category) {
+                if (a.date > dateReference) {
+                    aux = a.estimate;
+                } else {
+                    aux = a.assistance;
+                }
+                perc = aux * 100 / a.capacity;
+            }
+        }
+        percentage.push(perc);       
+    }
+        return(percentage);
 }
