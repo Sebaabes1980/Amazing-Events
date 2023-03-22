@@ -213,6 +213,7 @@ footer>h1:hover{
 main{
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .container1{
@@ -224,21 +225,27 @@ main{
 .container1 fieldset{
     display: flex;
     flex-direction: column;
-    align-self: center;
     margin-bottom: 5%;
+}
+
+.formu{
+    display: flex;
+    align-items:flex-end;
+    justify-content: space-between;
 }
 
 .table{
     width: 93%;
     margin: 3%;
-    border-radius: 5%;
+    border: black 5px double;
     padding: 2% 0%;
     table-layout: fixed;
     text-align: center;
 }
 
 .table td, tr{
-    border: 1px solid black;
+    border: 1px double black;
+    border-spacing: 5px;
     padding: 2%;
     width: 100%;
 }
@@ -257,6 +264,12 @@ main{
 .pesos::before {
     content: "U$$ ";
   }
+
+.no-results{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .spinner {
     display: flex;
@@ -288,6 +301,26 @@ main{
     margin: 0 5px;
     animation: spinner 1s linear infinite;
   }
+
+  #enviar{
+    background-color: deeppink;
+    color: aliceblue;
+    transition: background-color 500ms;
+    font-weight: bold;
+    border-color: blue;
+    border-radius: 5% blue;
+}
+
+#enviar:hover{
+    background-color: aliceblue;
+    color:deeppink ;
+}
+
+#nombre, #mail, #mensaje{
+    font-size: 2em;
+    margin-bottom: 5%; 
+    align-self: flex-end;   
+}
   
   @keyframes spinner {
     0% {
@@ -314,10 +347,25 @@ main{
         font-size: 1.8em;
         flex-wrap: wrap;
     }
-    #nombre, #mail, #mensaje, #enviar{
+    #nombre, #mail, #mensaje{
         font-size: 2em;
-        margin-bottom: 5%;
+        margin-bottom: 5%;    
     }    
+
+    #enviar{
+        background-color: deeppink;
+        color: aliceblue;
+        transition: background-color 500ms;
+        font-weight: bold;
+        box-shadow: 3px 3px 3px deeppink;
+        border-color: blue;
+    }
+    
+    #enviar:hover{
+        background-color: aliceblue;
+        color:deeppink ;
+    }
+
     fieldset label{
         font-size: 2em;
         margin-bottom: 5%;

@@ -50,9 +50,9 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="10000">
-        <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Home">
+        <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Past Events">
         <div class="carousel-caption d-none d-md-block">
-          <h2><a href="/index.html">HOME</a></h2>
+          <h2><a href="#">PAST EVENTS</a></h2>
         </div>
       </div>
       <div class="carousel-item" data-bs-interval="2000">
@@ -63,32 +63,34 @@
         </div>
       </div>
       <div class="carousel-item"data-bs-interval="2000">
-        <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Past Events">
+        <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Home">
         <div class="carousel-caption d-none d-md-block">
-          <h2><a href="#">PAST EVENTS</a></h2>
+          <h2><a href="/index.html">HOME</a></h2>
         </div>
       </div>
       <div class="carousel-item"data-bs-interval="2000">
-        <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Past Events">
+        <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Contact">
         <div class="carousel-caption d-none d-md-block">
           <h2><a href="/contact.html">CONTACT</a></h2>
         </div>
       </div>
       <div class="carousel-item"data-bs-interval="2000">
-        <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Past Events">
+        <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Stats">
         <div class="carousel-caption d-none d-md-block">
           <h2><a href="/stats.html">STATS</a></h2>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" >
+      <a href="upcoming.html"> <span class="carousel-control-prev-icon" aria-hidden="true"></span></a>
       <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>  
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark">
+      <a href="contact.html"><span class="carousel-control-next-icon" aria-hidden="true"></span></a>
       <span class="visually-hidden">Next</span>
     </button>
+
   </div>
   
   <div id="contenedor">
@@ -103,7 +105,11 @@
     </div>
   </div>
 
-  <h1 id="no-results" style="display: none;">No results found</h1>
+  <div class="no-results">
+    <h1 id="no-results" style="display: none;">No results found</h1>
+    <video src="/assets/video.mp4" width="480" height="320" autoplay muted loop id="no-results-video" style="display: none;"></video>
+  </div>  
+  
   <div id="spinner" class="spinner">
     <div class="spinner__item"></div>
     <div class="spinner__item"></div>

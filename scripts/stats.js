@@ -58,9 +58,9 @@ function imprimirTable1(event,container) {
     </thead>
     <tbody>
       <tr>  
-        <td><b><i>Events with the higest percentage of attendance</i></b></td>
-        <td><b><i>Events with the lowest percentage of attendance</i></b></td>
-        <td><b><i>Events with larger capacity</i></b></td>
+        <td style="background-color:#C0C0C0"><b><i>Events with the higest percentage of attendance</i></b></td>
+        <td style="background-color:#C0C0C0"><b><i>Events with the lowest percentage of attendance</i></b></td>
+        <td style="background-color:#C0C0C0"><b><i>Events with larger capacity</i></b></td>
       </tr>
       <tr>
         <td>${mayAtt2}</td>
@@ -88,9 +88,9 @@ function imprimirTable2(event,container) {
     </thead>
     <tbody>
         <tr>  
-            <td><b><i>Categories</td>
-            <td><b><i>Revenues</td>
-            <td><b><i>Percentage of attendance</td>
+            <td style="background-color:#C0C0C0"><b><i>Categories</td>
+            <td style="background-color:#C0C0C0"><b><i>Revenues</td>
+            <td style="background-color:#C0C0C0"><b><i>Percentage of attendance</td>
         </tr>
     </tbody>
     ${createTable(arrayCat)}`
@@ -113,9 +113,9 @@ function imprimirTable3(event,container) {
     </thead>
     <tbody>
         <tr>  
-            <td><b><i>Categories</td>
-            <td><b><i>Revenues</td>
-            <td><b><i>Percentage of attendance</td>
+            <td style="background-color:#C0C0C0"><b><i>Categories</td>
+            <td style="background-color:#C0C0C0"><b><i>Revenues</td>
+            <td style="background-color:#C0C0C0"><b><i>Percentage of attendance</td>
         </tr>
     </tbody>
     ${createTable(arrayCat)}`

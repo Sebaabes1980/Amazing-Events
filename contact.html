@@ -50,9 +50,9 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
-          <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Home">
+          <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Contact">
           <div class="carousel-caption d-none d-md-block">
-            <h2><a href="/index.html">HOME</a></h2>
+            <h2><a href="/#">CONTACT</a></h2>
           </div>
         </div>
         <div class="carousel-item" data-bs-interval="2000">
@@ -69,41 +69,43 @@
           </div>
         </div>
         <div class="carousel-item"data-bs-interval="2000">
-          <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Past Events">
+          <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Home">
           <div class="carousel-caption d-none d-md-block">
-            <h2><a href="/#">CONTACTS</a></h2>
+            <h2><a href="/index.html">HOME</a></h2>
           </div>
         </div>
         <div class="carousel-item"data-bs-interval="2000">
-          <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Past Events">
+          <img src="/assets/img/fondo_nav.png" class="d-block w-100" alt="go to Stats">
           <div class="carousel-caption d-none d-md-block">
             <h2><a href="/stats.html">STATS</a></h2>
           </div>
         </div>
       </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" >
+        <a href="past.html"> <span class="carousel-control-prev-icon" aria-hidden="true"></span></a>
+        <span class="visually-hidden">Previous</span>
+      </button>  
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark">
+        <a href="stats.html"><span class="carousel-control-next-icon" aria-hidden="true"></span></a>
+        <span class="visually-hidden">Next</span>
+      </button>
+
   </div>
   
 
 <main>
   <form name="contacto" method="get" action="" class="container1">
     <fieldset>
-        <div>
+        <div class="formu">
             <label for="nombre">Name: </label>
             <input type="text" name="nombre" id="nombre">
         </div>
-        <div>
+        <div class="formu">
           <label for="mail">E-mail: </label>
           <input type="email" name="mail" id="mail">
       </div>
-      <div>
+      <div class="formu">
         <label for="mensaje">Message: </label>
         <input type="textarea" name="mensaje" id="mensaje">
     </div>
@@ -112,13 +114,13 @@
 </form>
 </main>
 
-  <footer>
-    <div id="contenedor-redes">
-      <img src="/assets/img/instagram.png" alt="logo de instagram">
-      <img src="/assets/img/facebook.png" alt="logo de facebook">
-      <img src="/assets/img/whatsapp.png" alt="logo de whatsapp">
-    </div>
-    <h1>FE06-TN</h1>
-  </footer>
+<footer>
+  <div id="contenedor-redes">
+    <a href="https://www.instagram.com/amazingevents"> <img class="imgFooter" src="/assets/img/instagram.png" alt="logo de instagram"> </a>
+    <a href="https://web.facebook.com/amazingevents"> <img class="imgFooter" src="/assets/img/facebook.png" alt="logo de facebook"> </a>
+    <a href="https://web.whatsapp.com/"> <img class="imgFooter" src="/assets/img/whatsapp.png" alt="logo de whatsapp"> </a>
+  </div>
+  <h1>FE06-TN</h1>
+</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script></body>
 </html>

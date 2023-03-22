@@ -41,9 +41,13 @@ const filterAndPrint = () => {
     if (dataFiltered.length === 0) {
         const $noResults = document.getElementById('no-results');
         $noResults.style.display = 'block';
+        const $video = document.getElementById('no-results-video');
+        $video.style.display = 'block';
     } else {
         const $noResults = document.getElementById('no-results');
         $noResults.style.display = 'none';
+        const $video = document.getElementById('no-results-video');
+        $video.style.display = 'none';
     }
     imprimirCards(dataFiltered, $container);
   };
